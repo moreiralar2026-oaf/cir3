@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma de Cirurgia Oral - Hupp</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2>Cirurgia Oral</h2>
+                <p>Hupp - Caps 3, 7, 8</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-section="home">
+                    <span class="nav-icon">🏠</span> Início
+                </a>
+                <a href="#" class="nav-item" data-section="content">
+                    <span class="nav-icon">📚</span> Conteúdo
+                </a>
+                <a href="#" class="nav-item" data-section="concept-map">
+                    <span class="nav-icon">🗺️</span> Mapa de Conceitos
+                </a>
+                <a href="#" class="nav-item" data-section="flashcards">
+                    <span class="nav-icon">📇</span> Flashcards
+                </a>
+                <a href="#" class="nav-item" data-section="quiz">
+                    <span class="nav-icon">❓</span> Quiz
+                </a>
+                <a href="#" class="nav-item" data-section="clinical-cases">
+                    <span class="nav-icon">🩺</span> Casos Clínicos
+                </a>
+                <a href="#" class="nav-item" data-section="instruments">
+                    <span class="nav-icon">🛠️</span> Instrumentais
+                </a>
+                <a href="#" class="nav-item" data-section="mnemonics">
+                    <span class="nav-icon">🧠</span> Mnemônicos
+                </a>
+                <a href="#" class="nav-item" data-section="quick-review">
+                    <span class="nav-icon">⚡</span> Revisão Rápida
+                </a>
+                <a href="#" class="nav-item" data-section="common-mistakes">
+                    <span class="nav-icon">⚠️</span> Erros Comuns
+                </a>
+                <a href="#" class="nav-item" data-section="exam">
+                    <span class="nav-icon">📝</span> Simulado
+                </a>
+                <a href="#" class="nav-item" data-section="progress">
+                    <span class="nav-icon">📊</span> Meu Progresso
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <button id="theme-toggle" class="theme-toggle" aria-label="Alternar modo escuro">
+                    <span class="theme-icon">🌙</span> Modo Escuro
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content" id="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu">☰</button>
+                <div class="top-bar-info">
+                    <h1 id="current-section-title">Início</h1>
+                    <div class="progress-bar-container" title="Progresso geral do curso">
+                        <div class="progress-bar" id="global-progress-bar" style="width: 0%;"></div>
+                    </div>
+                </div>
+                <div class="top-bar-actions">
+                    <div class="search-container">
+                        <input type="search" id="global-search" placeholder="Buscar conceitos, instrumentos..." aria-label="Busca global">
+                        <div id="search-results" class="search-results"></div>
+                    </div>
+                    <div class="performance-indicator" id="performance-indicator" title="Taxa de acerto geral">
+                        <span>🎯</span> <span id="performance-value">0%</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Sections -->
+            <div class="sections-container">
+                <!-- Home Section -->
+                <section id="section-home" class="content-section active">
+                    <div class="home-grid">
+                        <div class="card card-continue">
+                            <h3>Continuar Estudando</h3>
+                            <p id="continue-studying-text">Comece sua jornada de aprendizado!</p>
+                            <button class="btn btn-primary" id="btn-continue">Continuar</button>
+                        </div>
+                        <div class="card card-review">
+                            <h3>Revisão de Hoje</h3>
+                            <p id="review-today-count">0 flashcards para revisar.</p>
+                            <button class="btn btn-primary" id="btn-review-today">Revisar Agora</button>
+                        </div>
+                        <div class="card card-flashcards">
+                            <h3>Flashcards Pendentes</h3>
+                            <p id="pending-flashcards-count">0 pendentes</p>
+                        </div>
+                        <div class="card card-questions">
+                            <h3>Questões para Fazer</h3>
+                            <p id="pending-questions-count">0 questões no banco</p>
+                        </div>
+                        <div class="card card-performance">
+                            <h3>Seu Desempenho</h3>
+                            <p id="home-performance-text">Nenhum dado ainda. Comece a praticar!</p>
+                        </div>
+                        <div class="card card-mistakes">
+                            <h3>Conceitos que você mais errou</h3>
+                            <ul id="home-mistakes-list">
+                                <li>Nenhum erro registrado ainda.</li>
+                            </ul>
+                        </div>
+                        <div class="card card-time">
+                            <h3>Tempo de Estudo</h3>
+                            <p id="home-study-time">0 minutos</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Content Section -->
+                <section id="section-content" class="content-section">
+                    <div class="content-layout">
+                        <div class="content-list" id="content-list">
+                            <!-- Dynamic content list -->
+                        </div>
+                        <div class="content-detail" id="content-detail">
+                            <div class="placeholder-message">Selecione um tópico para estudar.</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Concept Map Section -->
+                <section id="section-concept-map" class="content-section">
+                    <h2>Mapa de Conceitos</h2>
+                    <p class="section-description">Clique nos nós para explorar os conceitos.</p>
+                    <div id="concept-map-container">
+                        <!-- SVG will be generated here -->
+                    </div>
+                </section>
+
+                <!-- Flashcards Section -->
+                <section id="section-flashcards" class="content-section">
+                    <div class="flashcards-controls">
+                        <div class="filter-group">
+                            <label for="flashcard-filter">Filtrar por tema:</label>
+                            <select id="flashcard-filter">
+                                <option value="all">Todos</option>
+                                <!-- Populated dynamically -->
+                            </select>
+                        </div>
+                        <div class="action-group">
+                            <button class="btn btn-secondary" id="btn-shuffle-cards">Embaralhar</button>
+                            <button class="btn btn-secondary" id="btn-review-errors-cards">Revisar Erros</button>
+                            <button class="btn btn-secondary" id="btn-review-difficult-cards">Revisar Difíceis</button>
+                        </div>
+                    </div>
+                    <div id="flashcard-area">
+                        <!-- Flashcard will be rendered here -->
+                    </div>
+                </section>
+
+                <!-- Quiz Section -->
+                <section id="section-quiz" class="content-section">
+                    <div class="quiz-controls">
+                        <div class="filter-group">
+                            <label for="quiz-filter">Filtrar por tema:</label>
+                            <select id="quiz-filter">
+                                <option value="all">Todos</option>
+                                <!-- Populated dynamically -->
+                            </select>
+                        </div>
+                        <button class="btn btn-primary" id="btn-start-quiz">Iniciar Quiz</button>
+                    </div>
+                    <div id="quiz-area">
+                        <!-- Quiz questions will be rendered here -->
+                    </div>
+                </section>
+
+                <!-- Clinical Cases Section -->
+                <section id="section-clinical-cases" class="content-section">
+                    <div id="clinical-cases-area">
+                        <!-- Clinical cases will be rendered here -->
+                    </div>
+                </section>
+
+                <!-- Instruments Section -->
+                <section id="section-instruments" class="content-section">
+                    <div class="instruments-layout">
+                        <div class="instrument-list" id="instrument-list">
+                            <!-- Instrument list -->
+                        </div>
+                        <div class="instrument-detail" id="instrument-detail">
+                             <div class="placeholder-message">Selecione um instrumento para ver detalhes.</div>
+                        </div>
+                    </div>
+                     <div class="instrument-game">
+                        <h3>Jogo: Que instrumento é esse?</h3>
+                        <div id="instrument-game-area">
+                             <!-- Game area -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Mnemonics Section -->
+                <section id="section-mnemonics" class="content-section">
+                    <h2>Mnemônicos</h2>
+                    <div id="mnemonics-list">
+                        <!-- Mnemonics will be listed here -->
+                    </div>
+                </section>
+
+                <!-- Quick Review Section -->
+                <section id="section-quick-review" class="content-section">
+                    <h2>Revisão Expressa (5 minutos)</h2>
+                    <div id="quick-review-content">
+                        <!-- Quick review content -->
+                    </div>
+                </section>
+
+                <!-- Common Mistakes Section -->
+                <section id="section-common-mistakes" class="content-section">
+                    <h2>Erros Comuns e Confusões</h2>
+                    <div id="common-mistakes-list">
+                        <!-- Common mistakes will be listed here -->
+                    </div>
+                </section>
+
+                <!-- Exam Section -->
+                <section id="section-exam" class="content-section">
+                    <div class="exam-setup">
+                        <h2>Simulado</h2>
+                        <p>Escolha o número de questões para o simulado.</p>
+                        <div class="exam-options">
+                            <button class="btn btn-secondary" data-questions="10">10 Questões</button>
+                            <button class="btn btn-secondary" data-questions="20">20 Questões</button>
+                            <button class="btn btn-secondary" data-questions="30">30 Questões</button>
+                            <button class="btn btn-secondary" data-questions="50">50 Questões</button>
+                        </div>
+                    </div>
+                    <div id="exam-area">
+                        <!-- Exam will be rendered here -->
+                    </div>
+                </section>
+
+                <!-- Progress Section -->
+                <section id="section-progress" class="content-section">
+                    <h2>Meu Progresso</h2>
+                    <div class="progress-dashboard">
+                        <div class="card stat-card">
+                            <h3>Questões Respondidas</h3>
+                            <p id="stat-questions-answered">0</p>
+                        </div>
+                        <div class="card stat-card">
+                            <h3>Percentual de Acerto</h3>
+                            <p id="stat-accuracy">0%</p>
+                        </div>
+                        <div class="card stat-card">
+                            <h3>Flashcards Revisados</h3>
+                            <p id="stat-flashcards-reviewed">0</p>
+                        </div>
+                        <div class="card stat-card">
+                            <h3>Conceitos Dominados</h3>
+                            <p id="stat-mastered-concepts">0</p>
+                        </div>
+                        <div class="card stat-card">
+                            <h3>Conceitos Frágeis</h3>
+                            <p id="stat-weak-concepts">0</p>
+                        </div>
+                        <div class="card stat-card">
+                            <h3>Sequência de Estudo</h3>
+                            <p id="stat-study-streak">0 dias</p>
+                        </div>
+                        <div class="card stat-card">
+                            <h3>Tempo de Estudo Total</h3>
+                            <p id="stat-study-time">0 min</p>
+                        </div>
+                        <div class="card stat-card">
+                            <h3>Taxa de Retenção Aproximada</h3>
+                            <p id="stat-retention-rate">0%</p>
+                        </div>
+                    </div>
+                    <div class="progress-details">
+                        <div class="card">
+                            <h3>Desempenho por Tema</h3>
+                            <div id="performance-by-topic">
+                                <!-- Bars for each topic -->
+                            </div>
+                        </div>
+                        <div class="card">
+                            <h3>Recomendações de Estudo</h3>
+                            <ul id="study-recommendations">
+                                <li>Pratique mais para obter recomendações.</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h3>Meus Favoritos ⭐</h3>
+                            <ul id="favorites-list">
+                                <li>Nenhum favorito ainda.</li>
+                            </ul>
+                        </div>
+                         <div class="card">
+                            <h3>Meus Erros</h3>
+                            <button class="btn btn-primary" id="btn-review-all-errors">Revisar Todos os Erros</button>
+                            <div id="errors-list">
+                                <!-- Errors list -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
